@@ -1,0 +1,255 @@
+{
+  "plugin.dependencies": "",
+  "plugin.load-before": "",
+  "plugin.version": "1.1",
+  "debug-build-mode": false,
+  "open-tab": 1,
+  "plugin-components": [
+    {
+      "children": [
+        {
+          "=": "stat-set-local-variable",
+          "parameters": [
+            "xp_bottle",
+            {
+              "=": "org.bukkit.inventory.ShapedRecipe#ShapedRecipe(org.bukkit.NamespacedKey,org.bukkit.inventory.ItemStack)",
+              "parameters": [
+                {
+                  "=": "org.bukkit.NamespacedKey#NamespacedKey(org.bukkit.plugin.Plugin,java.lang.String)",
+                  "parameters": [
+                    {"=": "expr-this-plugin"},
+                    {
+                      "=": "expr-string",
+                      "parameters": ["xp_bottle"]
+                    }
+                  ]
+                },
+                {
+                  "=": "org.bukkit.inventory.ItemStack#ItemStack(org.bukkit.inventory.ItemStack)",
+                  "parameters": [{
+                    "=": "expr-new-named-item-with-lore",
+                    "parameters": [
+                      {"=": "org.bukkit.Material#EXPERIENCE_BOTTLE"},
+                      {
+                        "=": "expr-string",
+                        "parameters": ["&2op sword"]
+                      },
+                      {
+                        "size": 1,
+                        "=": "expr-new-list",
+                        "parameters": [{
+                          "=": "expr-raw-string",
+                          "parameters": ["get a op sword"]
+                        }]
+                      }
+                    ]
+                  }]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "=": "org.bukkit.inventory.ShapedRecipe#shape(java.lang.String...)",
+          "parameters": [
+            {
+              "=": "expr-local-variable",
+              "parameters": ["xp_bottle"]
+            },
+            {
+              "size": 3,
+              "=": "expr-new-list",
+              "parameters": [
+                {
+                  "=": "expr-raw-string",
+                  "parameters": ["zbz"]
+                },
+                {
+                  "=": "expr-raw-string",
+                  "parameters": ["zbz"]
+                },
+                {
+                  "=": "expr-raw-string",
+                  "parameters": ["zaz"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "=": "org.bukkit.inventory.ShapedRecipe#setIngredient(char,org.bukkit.Material)",
+          "parameters": [
+            {
+              "=": "expr-local-variable",
+              "parameters": ["xp_bottle"]
+            },
+            {
+              "=": "expr-raw-string",
+              "parameters": ["b"]
+            },
+            {"=": "org.bukkit.Material#DIAMOND_BLOCK"}
+          ]
+        },
+        {
+          "=": "org.bukkit.inventory.ShapedRecipe#setIngredient(char,org.bukkit.Material)",
+          "parameters": [
+            {
+              "=": "expr-local-variable",
+              "parameters": ["xp_bottle"]
+            },
+            {
+              "=": "expr-raw-string",
+              "parameters": ["a"]
+            },
+            {"=": "org.bukkit.Material#STICK"}
+          ]
+        },
+        {
+          "=": "org.bukkit.Bukkit#addRecipe(org.bukkit.inventory.Recipe)",
+          "parameters": [{
+            "=": "expr-local-variable",
+            "parameters": ["xp_bottle"]
+          }]
+        }
+      ],
+      "=": "comp-plugin-enable"
+    },
+    {"=": "comp-plugin-disable"},
+    {
+      "children": [{
+        "children": [{
+          "children": [
+            {
+              "=": "stat-set-local-variable",
+              "parameters": [
+                "killer_sharp",
+                {
+                  "=": "org.bukkit.inventory.ItemStack#ItemStack(org.bukkit.inventory.ItemStack)",
+                  "parameters": [{
+                    "=": "expr-new-named-item-with-lore",
+                    "parameters": [
+                      {"=": "org.bukkit.Material#DIAMOND_SWORD"},
+                      {
+                        "=": "expr-string",
+                        "parameters": ["&2killer_sharp"]
+                      },
+                      {
+                        "size": 1,
+                        "=": "expr-new-list",
+                        "parameters": [{
+                          "=": "expr-raw-string",
+                          "parameters": ["get killed in 1 hehe"]
+                        }]
+                      }
+                    ]
+                  }]
+                }
+              ]
+            },
+            {
+              "=": "org.bukkit.inventory.ItemStack#addUnsafeEnchantment(org.bukkit.enchantments.Enchantment,int)",
+              "parameters": [
+                {
+                  "=": "expr-local-variable",
+                  "parameters": ["killer_sharp"]
+                },
+                {"=": "org.bukkit.enchantments.Enchantment#DAMAGE_ALL"},
+                {
+                  "=": "expr-number",
+                  "parameters": ["10"]
+                }
+              ]
+            },
+            {
+              "=": "org.bukkit.World#dropItem(org.bukkit.Location,org.bukkit.inventory.ItemStack)",
+              "parameters": [
+                {
+                  "=": "org.bukkit.entity.Entity#getWorld()",
+                  "parameters": [{"=": "org.bukkit.event.player.PlayerInteractEvent#getPlayer()"}]
+                },
+                {
+                  "=": "org.bukkit.entity.Entity#getLocation()",
+                  "parameters": [{"=": "org.bukkit.event.player.PlayerInteractEvent#getPlayer()"}]
+                },
+                {
+                  "=": "expr-local-variable",
+                  "parameters": ["killer_sharp"]
+                }
+              ]
+            }
+          ],
+          "=": "stat-if-statement",
+          "parameters": [
+            {
+              "=": "expr-boolean-logic",
+              "parameters": [
+                {
+                  "=": "expr-is-equal",
+                  "parameters": [
+                    {"=": "org.bukkit.event.player.PlayerInteractEvent#getAction()"},
+                    {"=": "org.bukkit.event.block.Action#RIGHT_CLICK_AIR"}
+                  ]
+                },
+                "OR",
+                {
+                  "=": "expr-is-equal",
+                  "parameters": [
+                    {"=": "org.bukkit.event.player.PlayerInteractEvent#getAction()"},
+                    {"=": "org.bukkit.event.block.Action#RIGHT_CLICK_BLOCK"}
+                  ]
+                }
+              ]
+            },
+            "normal"
+          ]
+        }],
+        "=": "stat-if-statement",
+        "parameters": [
+          {
+            "=": "expr-is-equal",
+            "parameters": [
+              {"=": "org.bukkit.event.player.PlayerInteractEvent#getItem()"},
+              {
+                "=": "org.bukkit.inventory.ItemStack#ItemStack(org.bukkit.inventory.ItemStack)",
+                "parameters": [{
+                  "=": "expr-new-named-item-with-lore",
+                  "parameters": [
+                    {"=": "org.bukkit.Material#EXPERIENCE_BOTTLE"},
+                    {
+                      "=": "expr-string",
+                      "parameters": ["&2op sword"]
+                    },
+                    {
+                      "size": 1,
+                      "=": "expr-new-list",
+                      "parameters": [{
+                        "=": "expr-raw-string",
+                        "parameters": ["get a op sword"]
+                      }]
+                    }
+                  ]
+                }]
+              }
+            ]
+          },
+          "normal"
+        ]
+      }],
+      "=": "org.bukkit.event.player.PlayerInteractEvent",
+      "parameters": ["NORMAL"]
+    }
+  ],
+  "plugin.soft-dependencies": "",
+  "plugin.name": "howtomakerecipe",
+  "plugin.prefix": "",
+  "current-plugin-component": 1,
+  "plugin.author": "portal",
+  "plugin.description": "it shows how to make custom recipe",
+  "plugin.permissions": "",
+  "open-plugin-components": [
+    0,
+    2,
+    1
+  ],
+  "plugin.website": ""
+}

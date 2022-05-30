@@ -1,0 +1,8 @@
+name: "howtomakerecipe"
+version: "1.1"
+main: "vb.$howtomakerecipe.PluginMain"
+api-version: 1.13
+authors: [portal]
+description: "it shows how to make custom recipe"
+commands:
+permissions:
