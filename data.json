@@ -240,11 +240,11 @@
     }
   ],
   "plugin.soft-dependencies": "",
-  "plugin.name": "howtomakerecipe",
+  "plugin.name": "poploot",
   "plugin.prefix": "",
   "current-plugin-component": 1,
   "plugin.author": "portal",
-  "plugin.description": "it shows how to make custom recipe",
+  "plugin.description": "get op loot by poping bottles",
   "plugin.permissions": "",
   "open-plugin-components": [
     0,
